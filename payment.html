@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>账单分期</title>
+  <style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  html{
+    font-size: 16px;
+    min-height: 100%;
+    background-color: #f5f6fb;
+  }
+  body{
+    color:#b5b5b5;
+    font-family:  Helvetica,STHeiTi,sans-serif;
+    -webkit-text-size-adjust: 100%!important;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+  }
+  .container{
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .weui-cells{
+    background: #fff;
+    overflow: hidden;
+    position: relative;
+    font-size: 1rem;
+  }
+  .weui_cell{
+    position: relative;
+    padding:1rem 1rem;
+    background: #fff;
+    border-top: 1px solid #efefef;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    align-items: center;
+  }
+  .weui_cell_hd{
+    -webkit-flex:1
+    flex: 1;
+    color:#373737;
+  }
+  .weui_cell_fr{
+    position: absolute;
+    right: 1rem;
+    width: 1.875rem;
+    height: 1.875rem;
+    border-radius: 50%;
+    display: block;
+    border: 2px solid #1291e2;
+    text-align: center;
+    line-height: 2rem;
+  }
+
+  .weui_cell_check{
+    background: #fff;
+    border: 1px solid #ececec;
+    cursor: pointer;
+  }
+  .weui_cell_check.weui_cell_active{
+    background-color: #1291e1;
+  }
+  .weui_cell_check .icon{
+    color: #fff;
+    font-size: 1.6rem;
+
+  }
+  .weui_cell_frsmall{
+    width: 1.6rem;
+    height: 1.6rem;
+    border: none;
+    background-color: #1291e2;
+    line-height: 1.6rem;
+  }
+  .weui_cell_hdnone{
+    color:#b5b5b5;
+  }
+  .weui_cell_hd .fcolumn{
+    color:#decc84;
+  }
+  .weui_cell_right{
+    position: absolute;
+    right: 1rem;
+    cursor: pointer;
+  }
+  .weui_cell_title{
+    margin-bottom: 1.2rem;
+    box-shadow: 0 2px 1px #eee;
+  }
+  .weui_cell_dashed{
+    border-top: 2px dotted #eee;
+  }
+  .arrow{
+    color:#1291e2;
+    font-weight: 400;
+    font-size: 1.5rem;
+    border-right: 1px solid #dcdcdc;
+    padding-right: 1rem;
+  }
+  h3{
+    display: inline-block;
+    font-size: 1.2rem;
+    margin-left: 1rem;
+  }
+  .title{
+    margin-left: 1rem;
+    text-align: left;
+  }
+  .title .aside{
+    color:#b5b5b5;
+  }
+  .firstcolumn{
+    width: 42px;
+    display: inline-block;
+  }
+  .icon{
+    font-size: 2rem;
+    color: #1291e2;
+    font-style: normal;
+  }
+  .icon-small{
+    font-size: 1.6rem;
+    color: #fff;
+  }
+  .info{
+    padding: .8rem 1rem 1.5rem 1rem;
+    font-size: 14px;
+    overflow: hidden;
+  }
+  .desc{
+    padding: .8rem 1rem;
+    font-size: 16px;
+  }
+  .desc .icon{
+    display: inline-block;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    background-color: #1291e2;
+    text-align: center;
+    line-height: 1.8rem;
+    vertical-align: bottom;
+  }
+  .info .check{
+    color: #9fc1da;
+    cursor: pointer;
+  }
+
+  .link{
+    margin-left: .2rem;
+  }
+  .button{
+    padding: .8rem 0rem .8rem 1rem;
+    box-sizing: border-box;
+    margin-right: 1rem;
+  }
+  .applyBtn{
+    width: 100%;
+    height: 60px;
+    border-radius: 4px;
+    background-color: #0e8ee7;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+  }
+  .warn{
+    padding: .4rem 1rem 2rem 1rem;
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .recom{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    padding: 0;
+    display: block;
+    border-top: 12px solid #3cc628;
+    border-left:24px solid #3cc628;
+    border-right:12px solid transparent;
+    border-bottom: 24px solid transparent;
+  }
+  .pos{
+    position: absolute;
+    top: 0;
+    left: 0px;
+    color: #fff
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="weui_cells">
+      <div class="weui_cell weui_cell_title">
+        <div class="weui_cell_hd">
+          <span class="arrow">←</span>
+          <h3 class="title">账单分期</h3>
+        </div>
+        <div class="weui_cell_fr">
+          <i class="icon">?</i>
+        </div>
+      </div>
+      <div class="weui_cell">
+        <div class="weui_cell_hd">
+          <span class="first">分期金额</span>
+          <span class=title>1901.30</span>
+        </div>
+        <div class="weui_cell_fr weui_cell_frsmall">
+          <i class="icon icon-small">i</i>
+        </div>
+      </div>
+      <div class="info">
+        <span clss="text">如有分期优惠券，仅在限定金额内使用，</span>
+        <span class="check">查看优惠券</span>
+      </div>
+    <div class="weui_cell">
+      <div class="weui_cell_hd weui_cell_hdnone">
+        <span class="firstcolumn">期数</span>
+        <span class=title>每期应还（元）</span>
+      </div>
+    </div>
+    <div class="weui_cell ">
+      <div class="weui_cell_hd">
+        <span class="recom"></span>
+        <span class="pos">荐</span>
+        <span class="firstcolumn">3期</span>
+        <span class="title">649.60
+          <span class="aside">(含每期手续费15.84)</span>
+        </span>
+      </div>
+      <div class="weui_cell_fr weui_cell_check weui_cell_active">
+        <i class="icon">✔</i>
+      </div>
+    </div>
+    <div class="weui_cell weui_cell_dashed">
+      <div class="weui_cell_hd">
+        <span class="fcolumn">免一期手续费</span>
+      </div>
+      <div class="weui_cell_right">
+        可免15.84元
+        <span class="link">></span>
+      </div>
+    </div>
+    <div class="weui_cell">
+      <div class="weui_cell_hd">
+        <span class="firstcolumn">6期</span>
+        <span class="title">331.14
+          <span class="aside">(含每期手续费14.26)</span>
+        </span>
+      </div>
+      <div class="weui_cell_fr weui_cell_check">
+        <i class="icon">✔</i>
+      </div>
+    </div>
+    <div class="weui_cell">
+      <div class="weui_cell_hd">
+        <span class="firstcolumn">9期</span>
+        <span class="title">224.98
+          <span class="aside">(含每期手续费13.73)</span>
+        </span>
+      </div>
+      <div class="weui_cell_fr weui_cell_check">
+        <i class="icon">✔</i>
+      </div>
+    </div>
+    <div class="weui_cell">
+      <div class="weui_cell_hd">
+        <span class="firstcolumn">12期</span>
+        <span class="title">172.38
+          <span class="aside">(含每期手续费13.94)</span>
+        </span>
+      </div>
+      <div class="weui_cell_fr weui_cell_check">
+        <i class="icon">✔</i>
+      </div>
+    </div>
+    <div class="desc">
+      <span class="desc-info">
+        手续费说明
+      </span>
+      <i class="icon icon-small">i</i>
+    </div>
+    <div class="button">
+    <button class="applyBtn">申请分期</button>
+    </div>
+    <div class="warn">
+      分期后于05月10号还清
+    </div>
+  </div>
+  <script>
+    document.querySelectorAll('.weui_cell_check').forEach(item=>{
+      item.addEventListener('click',function(){
+        if(!this.classList.contains('.weui_cell_active')){
+          if(document.querySelector('.weui_cell_active')){
+            document.querySelector('.weui_cell_active').classList.remove('weui_cell_active');
+          }
+          this.classList.add('weui_cell_active');
+        }
+      })
+    })
+
+  </script>
+</body>
+</html>
